@@ -1,0 +1,9 @@
+<?php
+$number = intval(readline());
+
+for ($i = 0; $i < $number; $i++) {
+    for ($j = 0; $j < $number; $j++) {
+        echo $number . ' ';
+    }
+    echo PHP_EOL;
+}

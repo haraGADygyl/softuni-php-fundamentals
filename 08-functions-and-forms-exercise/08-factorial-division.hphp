@@ -1,0 +1,16 @@
+<?php
+$first_number = intval(readline());
+$second_number = intval(readline());
+
+function calculate_factorial($x) {
+    $factorial = 1;
+    for ($i = $x; $i > 0; $i--) {
+        $factorial *= $i;
+    }
+    return $factorial;
+}
+
+$first_num_factorial = calculate_factorial($first_number);
+$second_num_factorial = calculate_factorial($second_number);
+
+echo number_format($first_num_factorial / $second_num_factorial, 2, '.', '');

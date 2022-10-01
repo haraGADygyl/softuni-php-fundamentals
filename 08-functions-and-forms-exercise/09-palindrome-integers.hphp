@@ -1,0 +1,13 @@
+<?php
+$number = readline();
+
+while ($number != 'END') {
+    if ($number === strrev($number)) {
+        echo 'true';
+    } else {
+        echo 'false';
+    }
+
+    echo PHP_EOL;
+    $number = readline();
+}

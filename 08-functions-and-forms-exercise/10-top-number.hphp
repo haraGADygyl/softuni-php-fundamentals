@@ -1,0 +1,20 @@
+<?php
+$number = intval(readline());
+
+for ($i = 8; $i < $number; $i++) {
+    $num_to_str = strval($i);
+
+    $char_sum = 0;
+    $has_odd_digit = false;
+    for ($j = 0; $j < strlen($num_to_str); $j++) {
+        $char_sum += intval($num_to_str[$j]);
+
+        if (intval($num_to_str[$j]) % 2 == 1) {
+            $has_odd_digit = true;
+        }
+    }
+
+    if ($char_sum % 8 == 0 && $has_odd_digit) {
+        echo $num_to_str . PHP_EOL;
+    }
+}
