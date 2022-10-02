@@ -1,0 +1,88 @@
+<?php
+$input_arr = array_map('intval', explode(' ', readline()));
+
+$command = readline();
+
+while ($command != 'end') {
+    $command_arr = explode(' ', $command);
+
+    $new_command = $command_arr[0];
+
+    if ($new_command === 'Contains') {
+        $number = intval($command_arr[1]);
+        if (in_array($number, $input_arr)) {
+            echo 'Yes';
+        } else {
+            echo 'No such number';
+        }
+
+    } elseif ($new_command === 'Print') {
+        if ($command_arr[1] == 'even') {
+            foreach ($input_arr as $item) {
+                if ($item % 2 == 0) {
+                    echo $item . ' ';
+                }
+            }
+        } else {
+            foreach ($input_arr as $item) {
+                if ($item % 2 == 1) {
+                    echo $item . ' ';
+                }
+            }
+        }
+
+    } elseif ($new_command === 'Get') {
+        echo array_sum($input_arr);
+
+    } elseif ($new_command === 'Filter') {
+        $condition = $command_arr[1];
+        $number = intval($command_arr[2]);
+
+        if ($condition === '<') {
+            foreach ($input_arr as $item) {
+                if ($item < $number) {
+                    echo $item . ' ';
+                }
+            }
+        } elseif ($condition === '<=') {
+            foreach ($input_arr as $item) {
+                if ($item <= $number) {
+                    echo $item . ' ';
+                }
+            }
+        } elseif ($condition === '>') {
+            foreach ($input_arr as $item) {
+                if ($item > $number) {
+                    echo $item . ' ';
+                }
+            }
+        } elseif ($condition === '>=') {
+            foreach ($input_arr as $item) {
+                if ($item >= $number) {
+                    echo $item . ' ';
+                }
+            }
+        }
+    } elseif ($new_command === 'Add') {
+        $number = intval($command_arr[1]);
+        $input_arr[] = $number;
+    } elseif ($new_command === 'Remove') {
+        $number = intval($command_arr[1]);
+        if (($key = array_search($number, $input_arr)) !== false) {
+            unset($input_arr[$key]);
+        }
+    } elseif ($new_command === 'RemoveAt') {
+        $number = intval($command_arr[1]);
+        array_splice($input_arr, $number, 1);
+    } elseif ($new_command === 'Insert') {
+        $number = intval($command_arr[1]);
+        $index = intval($command[2]);
+        array_splice($input_arr, $index, 0, $number);
+    }
+    echo PHP_EOL;
+
+
+    $command = readline();
+}
+
+echo implode(' ', $input_arr);

@@ -1,0 +1,15 @@
+<?php
+$num_arr_one = array_map('intval', explode(' ', readline()));
+$num_arr_two = array_map('intval', explode(' ', readline()));
+
+$biggest_arr = count($num_arr_one) >= count($num_arr_two) ? $num_arr_one : $num_arr_two;
+$smallest_arr = count($num_arr_one) <= count($num_arr_two) ? $num_arr_one : $num_arr_two;
+
+$result = [];
+for ($i = 0; $i < count($smallest_arr); $i++) {
+   array_push($result, $num_arr_one[$i], $num_arr_two[$i]);
+}
+$remaining_from_biggest_arr = array_slice($biggest_arr, count($smallest_arr), count($biggest_arr));
+$final_arr = array_merge($result, $remaining_from_biggest_arr);
+
+echo implode(' ', $final_arr);

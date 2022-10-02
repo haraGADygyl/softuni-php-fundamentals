@@ -1,0 +1,16 @@
+<?php
+$input = array_map('floatval', explode(' ', readline()));
+
+$arr_mid = intval(count($input) / 2);
+
+$result = [];
+for ($i = 0; $i < $arr_mid; $i++) {
+    $sum = array_shift($input) + array_pop($input);
+    $result[] = $sum;
+}
+
+if (count($input) % 2 == 1) {
+    $result[] = $input[0];
+}
+
+echo implode(' ', $result);

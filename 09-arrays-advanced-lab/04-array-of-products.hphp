@@ -1,0 +1,15 @@
+<?php
+$number = intval(readline());
+
+$result = [];
+for ($i = 1; $i <= $number; $i++) {
+    $result[] = readline();
+}
+
+sort($result);
+
+$counter = 1;
+foreach ($result as $item) {
+    echo "$counter.$item" . PHP_EOL;
+    $counter++;
+}

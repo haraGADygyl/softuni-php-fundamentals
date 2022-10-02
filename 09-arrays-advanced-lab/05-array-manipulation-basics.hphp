@@ -1,0 +1,28 @@
+<?php
+$input_arr = array_map('intval', explode(' ', readline()));
+
+$command = readline();
+
+while ($command != 'end') {
+    $command = explode(' ', $command);
+    $math_command = $command[0];
+    $number = intval($command[1]);
+
+    if ($math_command === 'Add') {
+        $input_arr[] = $number;
+    } elseif ($math_command === 'Remove') {
+        if (($key = array_search($number, $input_arr)) !== false) {
+            unset($input_arr[$key]);
+        }
+    } elseif ($math_command === 'RemoveAt') {
+        array_splice($input_arr, $number, 1);
+    } elseif ($math_command === 'Insert') {
+        $index = intval($command[2]);
+        array_splice($input_arr, $index, 0, $number);
+    }
+
+
+    $command = readline();
+}
+
+echo implode(' ', $input_arr);
