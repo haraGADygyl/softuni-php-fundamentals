@@ -1,0 +1,28 @@
+<?php
+$train = array_map('intval', explode(' ', readline()));
+$wagon_capacity = intval(readline());
+
+$command = readline();
+
+while ($command != 'end') {
+    if (str_starts_with($command, 'Add')) {
+        $command_split = explode(' ', $command);
+        $number = intval($command_split[1]);
+
+        $train[] = $number;
+
+    } else {
+        $number = intval($command);
+
+        foreach ($train as &$item) {
+            if (($item + $number) <= $wagon_capacity) {
+                $item += $number;
+                break;
+            }
+        }
+    }
+
+    $command = readline();
+}
+
+echo implode(' ', $train);

@@ -1,0 +1,16 @@
+<?php
+$input_arr = array_map('intval', explode(' ', readline()));
+$value = readline();
+
+while ($value != 'end') {
+    $index = intval($value[0]);
+
+    array_splice($input_arr, $index, 0, intval($value));
+
+
+
+
+    $value = readline();
+}
+
+echo implode(' ', $input_arr);

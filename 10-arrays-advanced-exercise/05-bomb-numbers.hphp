@@ -1,0 +1,18 @@
+<?php
+$input_arr = array_map('intval', explode(' ', readline()));
+$bomb_arr = array_map('intval', explode(' ', readline()));
+
+$bomb_value = $bomb_arr[0];
+$bomb_neighbors = $bomb_arr[1];
+
+while (in_array($bomb_value, $input_arr)) {
+    $index = array_search($bomb_value, $input_arr);
+
+    if ($index - $bomb_neighbors >= 0) {
+        array_splice($input_arr, $index - $bomb_neighbors, $bomb_neighbors * 2 + 1);
+    } else {
+        array_splice($input_arr, 0, $bomb_neighbors  + 1);
+    }
+}
+
+echo array_sum($input_arr);

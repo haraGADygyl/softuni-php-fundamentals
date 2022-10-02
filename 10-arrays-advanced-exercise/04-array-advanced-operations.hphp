@@ -1,0 +1,54 @@
+<?php
+$input_arr = array_map('intval', explode(' ', readline()));
+$command = readline();
+
+while ($command != 'End') {
+    $command_split = explode(' ', $command);
+    $command_clean = $command_split[0];
+
+    if ($command_clean === 'Add') {
+        $number = intval($command_split[1]);
+        $input_arr[] = $number;
+
+    } elseif ($command_clean === 'Insert') {
+        $number = intval($command_split[1]);
+        $index = intval($command_split[2]);
+
+        if ($index < 0 || $index > count($input_arr)) {
+            echo 'Invalid index' . PHP_EOL;
+            $command = readline();
+            continue;
+        }
+
+        array_splice($input_arr, $index, 0, $number);
+
+    } elseif ($command_clean === 'Remove') {
+        $index = intval($command_split[1]);
+
+        if ($index < 0 || $index > count($input_arr)) {
+            echo 'Invalid index' . PHP_EOL;
+            $command = readline();
+            continue;
+        }
+
+        array_splice($input_arr, $index, 1);
+
+    } elseif ($command_clean === 'Shift') {
+        $direction = $command_split[1];
+        $number = intval($command_split[2]);
+
+        if ($direction === 'left') {
+            for ($i = 0; $i < $number; $i++) {
+                $input_arr[] = array_shift($input_arr);
+            }
+        } else {
+            for ($i = 0; $i < $number; $i++) {
+                array_unshift($input_arr, array_pop($input_arr));
+            }
+        }
+    }
+
+    $command = readline();
+}
+
+echo implode(' ', $input_arr);

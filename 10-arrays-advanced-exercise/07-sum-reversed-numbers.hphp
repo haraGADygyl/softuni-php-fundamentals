@@ -1,0 +1,8 @@
+<?php
+$input_arr = array_map('intval', explode(' ', readline()));
+
+for ($i = 0; $i < count($input_arr); $i++) {
+    $input_arr[$i] = strrev($input_arr[$i]);
+}
+
+echo array_sum($input_arr);

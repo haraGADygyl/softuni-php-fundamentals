@@ -1,0 +1,27 @@
+<?php
+$commands_count = intval(readline());
+
+$guests_arr = [];
+for ($i = 0; $i < $commands_count; $i++) {
+    $guest = explode(' ', readline());
+
+    $guest_name = $guest[0];
+
+    if (in_array($guest_name, $guests_arr)) {
+        if (in_array('not', $guest)) {
+            array_splice($guests_arr, array_search($guest_name, $guests_arr), 1);
+        } else {
+            echo "$guest_name is already in the list!" . PHP_EOL;
+        }
+    } else {
+        if (in_array('not', $guest)) {
+            echo "$guest_name is not in the list!" . PHP_EOL;
+        } else {
+            $guests_arr[] = $guest_name;
+        }
+    }
+}
+
+foreach ($guests_arr as $item) {
+    echo $item . PHP_EOL;
+}
